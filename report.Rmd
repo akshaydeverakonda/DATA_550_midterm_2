@@ -5,6 +5,13 @@ date: "`r Sys.Date()`"
 output: html_document
 --- 
 
+```{r, setup, include=FALSE}
+library(yaml)
+config <- yaml::read_yaml("config.yml")  
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
 
 ```{r, set-chunk-opts, echo = FALSE}
 install.packages("pacman")
@@ -22,7 +29,7 @@ here::i_am("report.Rmd")
 
 Analysis 1: A table showing for each state what the average change of the “ptc_15d” variable over the reporting periods included in this document.
 
-```{r, eval = FALSE}
+```{r analysis_1, eval=config$include_analysis_1}
 
 
 
@@ -34,7 +41,7 @@ print(ptc_15d_table)
 
 Analysis 2 - A table showing the top 20 jurisdictions with highest average detection proportions
 
-```{r, eval = TRUE}
+```{r analysis_2, eval=config$include_analysis_2}
 
 
 top_20_table <- readRDS(
@@ -45,7 +52,7 @@ print(top_20_table)
 
 Analysis 3 - A scatterplot with the X axis being population levels of each wastewater treatment plant, and the Y axis will be the average of the detect_prop_15d values recorded for each population size. 
 
-```{r, eval = FALSE}
+```{r analysis_3, eval=config$include_analysis_3}
 
 
 img_3 <- image_read(here::here("Output/Analysis_3/plot.png"))
@@ -55,7 +62,7 @@ print(img_3)
 Analysis 4 -This script creates a bar chart summarizing "avg_detect_prop_15d" by season
 
 
-```{r, eval = TRUE}
+```{r analysis_4, eval=config$include_analysis_4}
 
 img_4 <- image_read(here::here("Output/Analysis_4/plot.png"))
 print(img_4)
