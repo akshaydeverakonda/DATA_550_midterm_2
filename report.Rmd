@@ -6,6 +6,7 @@ output: html_document
 --- 
 
 ```{r, setup, include=FALSE}
+options(repos = c(CRAN = "https://cloud.r-project.org/"))
 library(yaml)
 config <- yaml::read_yaml("config.yml")  
 knitr::opts_chunk$set(echo = TRUE)
