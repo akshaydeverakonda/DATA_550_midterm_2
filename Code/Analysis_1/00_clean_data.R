@@ -1,6 +1,8 @@
 here::i_am("Code/Analysis_1/00_clean_data.R")
 path_to_data <- here::here("Raw_data", "wastewater_2024-10-28_subset.csv")
 wastewater_data <- read.csv(path_to_data, header = TRUE)
+options(repos = c(CRAN = "https://cloud.r-project.org/"))
+install.packages("tidyverse")
 
 library(tidyverse)
 

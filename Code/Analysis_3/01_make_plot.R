@@ -1,8 +1,9 @@
 here::i_am("Code/Analysis_3/01_make_plot.R")
 path_to_data <- here::here("Raw_data", "wastewater_2024-10-28_subset.csv")
 wastewater_data <- read.csv(path_to_data, header = TRUE)
-
-
+install.packages("pacman")
+pacman::p_load(tidyverse)
+options(repos = c(CRAN = "https://cloud.r-project.org/"))
 library(tidyverse)
 
 # Group by population_served and calculate the average detect_prop_15d

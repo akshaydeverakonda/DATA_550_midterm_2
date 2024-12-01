@@ -1,5 +1,5 @@
 
-
+options(repos = c(CRAN = "https://cloud.r-project.org/"))
 here::i_am("Code/Analysis_4/midterm_code.R")
 
 path_to_data <- here::here("Raw_data", "wastewater_2024-10-28_subset.csv")

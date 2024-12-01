@@ -1,4 +1,4 @@
 include_analysis_1: true     
 include_analysis_2: true      
-include_analysis_3: false     
+include_analysis_3: true     
 include_analysis_4: false     

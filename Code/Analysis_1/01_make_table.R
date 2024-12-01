@@ -1,8 +1,9 @@
 here::i_am("Code/Analysis_1/01_make_table.R")
-
+options(repos = c(CRAN = "https://cloud.r-project.org/"))
 wastewater_data_filtered <- readRDS(
   file = here::here("output/Analysis_1/data_clean.rds")
 )
+install.packages("dplyr")
 
 library(dplyr)
 

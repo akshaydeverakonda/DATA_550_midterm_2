@@ -1,5 +1,5 @@
 knitr::opts_chunk$set(echo = TRUE)
-
+options(repos = c(CRAN = "https://cloud.r-project.org/"))
 here::i_am("Code/Analysis_2/detect_prop_15d_analysis.R")
 # Load required libraries
 #install.packages("magick")
