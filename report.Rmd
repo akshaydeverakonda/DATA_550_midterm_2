@@ -1,0 +1,63 @@
+---
+title: "Data 550 Midterm Project - Wastewater data Reproducible Report"
+author: "Akshay Deverakonda"
+date: "`r Sys.Date()`"
+output: html_document
+--- 
+
+```{r, set-chunk-opts, echo = FALSE}
+library(knitr)
+library(magick)
+opts_chunk$set(
+  echo = FALSE, warning = FALSE, message = FALSE
+)
+```
+
+This report runs several analyses on U.S. Centers for Disease Control and Prevention wastewater surveillance data.
+
+```{r, load-data}
+here::i_am("report.Rmd")
+
+```
+
+Analysis 1
+
+A table showing for each state what the average change of the “ptc_15d” variable over the reporting periods included in this document is.
+
+```{r, table}
+ptc_15d_table <- readRDS(
+  file = here::here("output/Analysis_1/table.rds")
+)
+print(ptc_15d_table)
+```
+
+Analysis 2 
+
+A table showing the top 20 jurisdictions with highest average detection proportions
+
+```{r}
+top_20_table <- readRDS(
+  file = here::here("output/Analysis_2/table.rds")
+)
+print(top_20_table)
+```
+
+Analysis 3
+
+A scatterplot with the X axis being population levels of each wastewater treatment plant, and the Y axis will be the average of the detect_prop_15d values recorded for each population size. 
+
+```{r}
+img_3 <- image_read(here::here("Output/Analysis_3/plot.png"))
+print(img_3)
+```
+
+
+Analysis 4
+
+This script creates a bar chart summarizing "avg_detect_prop_15d" by season
+
+```{r}
+img_4 <- image_read(here::here("Output/Analysis_4/plot.png"))
+print(img_4)
+```
+
