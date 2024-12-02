@@ -1,0 +1,74 @@
+---
+title: '550'
+author: "Jiayi Zhang"
+date: "2024-11-16"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Load required libraries
+library(dplyr)
+library(readr)
+library(knitr)
+library(kableExtra)
+# Set the data path
+data_path <- "C:/Users/grezh/Desktop/DATA550_midterm_Jiayi/wastewater_2024-10-28.csv"
+
+# Load the dataset
+wastewater_data <- read_csv(data_path)
+
+# Preview the data
+head(wastewater_data)
+```
+```{r}
+# Check for missing values and clean data
+cleaned_data <- wastewater_data %>%
+  filter(!is.na(detect_prop_15d)) %>%
+  group_by(wwtp_jurisdiction) %>%
+  summarise(avg_detect_prop = mean(detect_prop_15d, na.rm = TRUE)) %>%
+  arrange(desc(avg_detect_prop))
+
+# Preview the cleaned data
+head(cleaned_data)
+
+```
+
+```{r}
+# Extract the top 20 jurisdictions
+top_20 <- cleaned_data %>%
+  slice_head(n = 20)
+
+save_kable(
+  kable(top_20, caption = "Top 20 Jurisdictions with Highest Average Detection Proportions") %>%
+    kable_styling(bootstrap_options = "striped", full_width = F),
+  file = "C:/Users/grezh/Desktop/top_20_table.html"
+)
+
+webshot(
+  url = "C:/Users/grezh/Desktop/top_20_table.html",
+  file = "C:/Users/grezh/Desktop/top_20_table.png",
+  zoom = 2
+)
+
+```
+
+```{r}
+library(kableExtra)
+
+html_table <- kable(top_20, caption = "Top 20 Jurisdictions with Highest Average Detection Proportions") %>%
+  kable_styling(bootstrap_options = "striped", full_width = F)
+
+save_kable(html_table, "C:/Users/grezh/Desktop/top_20_table.html")
+
+```
+
+```{r}
+# Save the results to a CSV file
+write_csv(top_20, "C:/Users/grezh/Desktop/top_20_detect_prop.csv")
+
+```
+
